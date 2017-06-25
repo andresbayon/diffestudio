@@ -1,0 +1,145 @@
+@import normalize.scss
+@import _flex
+
+a
+  text-decoration: none
+  color: #000
+
+.sr-only
+  border: 0
+  clip: rect( 1px, 1px, 1px, 1px )
+  clip-path: inset( 50% )
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+  word-wrap: normal
+
+@mixin breakpoint($point)
+  @if $point == tablet
+    @media only screen and (min-width: 640px) { @content }
+  @else if $point == laptop
+    @media only screen and (min-width: 800px) { @content }
+  @else if $point == desktop
+    @media only screen and (min-width: 1200px) { @content }
+  @else if $point == largest
+    @media only screen and (min-width: 1920px)  { @content }
+
+.diff
+  &-layout
+    &-container
+      width: 100%
+      margin: 0 auto
+      @include breakpoint(largest)
+        width: 1920px
+    &-nav
+      @include flexbox()
+      @include flex-direction(row)
+      position: fixed
+      top: 0
+      left: 0
+      width: 100%
+      background: #fff
+  &-nav
+    &-brand
+      @include flex()
+      padding: 16px
+    &-buttons
+      @include flex()
+      text-align: right
+      padding: 16px
+  &-menu
+    @include flexbox()
+    @include flex-direction(column)
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    background: #000
+    color: #fff
+    text-align: center
+    visibility: hidden
+    opacity: 0
+    transition: .2s ease-in-out all
+    &-show
+      opacity: 1
+      visibility: visible
+    &-close
+      @include flex(1)
+      @include flexbox()
+      @include flex-direction(column)
+      @include justify-content(center)
+      @include align-items(center)
+      &-button
+        @include flex(0 0 1px)
+    &-nav
+      @include flex(3)
+      @include flexbox()
+      @include flex-direction(column)
+      @include justify-content(center)
+      @include align-items(center)
+      &-list
+        margin: 0
+        padding: 0
+        list-style: none
+        &-item
+          padding: 16px
+          &-link
+            color: #fff
+            font-size: 36px
+            text-decoration: none
+    &-social
+      @include flex(1)
+      @include flexbox()
+      @include flex-direction(column)
+      @include justify-content(center)
+      @include align-items(center)
+      &-list
+        margin: 0
+        padding: 0
+        list-style: none
+        &-item
+          padding: 8px
+          &-link
+            color: #fff
+            font-size: 16px
+            text-decoration: none
+            text-transform: lowercase
+  &-footer
+    @include flexbox()
+    @include flex-direction(column)
+    @include justify-content(space-between)
+    width: 100%
+    @include breakpoint(tablet)
+      @include flex-direction(row)
+    &-element
+      @include flex()
+      padding: 16px
+      text-align: center
+      &-left
+        @include breakpoint(tablet)
+          text-align: left
+      &-right
+        @include breakpoint(tablet)
+          text-align: right
+  &-content
+    padding: 16px
+  &-scroll-button
+    position: fixed
+    bottom: 16px
+    left: 50%
+    width: 100px
+    margin-left: -50px
+    height: 100px
+    border: none
+    border-radius: 50%
+    background: #fff
+    color: #000
+    cursor: pointer
+    transition: .2s ease-in-out all
+    &-top
+      background: #000
+      color: #fff
