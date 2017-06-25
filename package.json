@@ -16,7 +16,7 @@
     "watch-html": "nodemon --watch ./src -e html -x \"npm run parse-html && npm run replace && browser-sync reload\"",
     "browser-sync": "browser-sync start -s 'build' -f 'build'",
     "watch": "npm run browser-sync & npm run watch-js & npm run watch-sass & npm run watch-img & npm run watch-html",
-    "prod": "clean run clean && npm run compile-js && npm run minify-js && npm run compile-sass && npm run minify-css && npm run minify-img && npm run minify-html && npm run replace"
+    "build": "clean run clean && npm run compile-js && npm run minify-js && npm run compile-sass && npm run minify-css && npm run minify-img && npm run minify-html && npm run replace"
   },
   "author": "Andrés Bayón",
   "license": "GPL-3.0",
