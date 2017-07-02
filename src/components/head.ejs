@@ -1,0 +1,103 @@
+<%# Formato del objeto de entrada
+siteName: '',
+title: '',
+description: '',
+slug: '',
+image: [{
+  location: '',
+  title: ''
+}],
+alternate: [{
+  lang: '',
+  url: ''
+}],
+locale: ''
+og: {
+  type: ''
+},
+twitter: {
+  siteAccount: '@[siteAccount]',
+  author: '@[authorAccount]',
+  cardType: '[summary]/[summary_large_image]',
+}%>
+
+<!DOCTYPE html>
+<% if (locale) { %>
+  <html lang="<%= locale %>">
+<% } else { %>
+  <html>
+<% } %>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="icon" type="image/svg" href="{#baseUrl}/images/icon.svg">
+
+      <% if (title) { %>
+        <title><%= title %></title>
+        <meta property="og:title" content="<%= title %>">
+        <meta name="twitter:title" content="<%= title %>">
+      <% } %>
+
+      <% if (description) { %>
+        <meta name="description" content="<%= description %>">
+        <meta property="og:description" content="<%= description %>">
+        <meta name="twitter:description" content="<%= description %>">
+      <% } %>
+
+      <% if (slug) { %>
+        <link rel="canonical" href="{#baseUrl}<%= slug %>">
+        <meta property="og:url" content="{#baseUrl}<%= slug %>">
+      <% } %>
+
+      <% if (typeof alternate !== 'undefined' && alternate.length > 0) { %>
+        <% for (var len = alternate.length; len--;) { %>
+          <link rel="alternate" hreflang="<%= alternate[len].lang %>" href="{#baseUrl}<%= alternate[len].url %>">
+        <% } %>
+      <% } %>
+
+      <% if (locale) { %>
+        <meta property="og:locale" content="<%= locale %>">
+      <% } %>
+
+      <% if (og) { %>
+        <% if (og.type) { %>
+          <meta property="og:type" content="<%= og.type %>">
+        <% } else { %>
+          <meta property="og:type" content="website">
+        <% } %>
+      <% } %>
+
+      <% if (siteName) { %>
+        <meta property="og:site_name", content="<%= siteName %>">
+      <% } %>
+
+      <% if (typeof image !== 'undefined' && image.length > 0) { %>
+        <% for (var len = image.length; len--;) { %>
+          <meta property="og:image" content="<%= image[len].location %>">
+          <% if (len === 0) { %>
+            <meta property="twitter:image" content="<%= image[len].location %>">
+            <meta property="twitter:image:alt" content="<%= image[len].title %>">
+          <% } %>
+        <% } %>
+      <% } %>
+
+      <% if (typeof twitter !== 'undefined') { %>
+        <% if (twitter.cardType) { %>
+          <meta name="twitter:card" content="<%= twitter.cardType %>">
+        <% } else { %>
+          <meta name="twitter:card" content="summary">
+        <% } %>
+        <% if (twitter.siteAccount) { %>
+          <meta name="twitter:site" content="<%= twitter.siteAccount %>">
+        <% } %>
+        <% if (twitter.author) { %>
+          <meta name="twitter:creator", content="<%= twitter.author %>">
+        <% } %>
+      <% } %>
+
+      <!-- Styles & Scripts-->
+      <link rel="stylesheet" href="{#baseUrl}/css/styles.css">
+    </head>
+    <body>

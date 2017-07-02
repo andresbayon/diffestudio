@@ -1,0 +1,58 @@
+<%- include('../../components/head', {
+  siteName: 'Diff Estudio',
+  title: 'Trabajos',
+  description: 'DIFF Estudio ofrece trabajos de dirección creativa, branding, diseño gráfico y diseño web. Trabajamos desde la ciudad de Valladolid para todo el mundo.',
+  slug: '/trabajos',
+  image: [{
+    location: '{#baseUrl}/images/landing.jpg',
+    title: 'Diff Estudio'
+  }],
+  locale: 'es',
+  og: {
+    type: 'website'
+  },
+  twitter: {
+    siteAccount: '@diffestudio',
+    author: '@jaimerodman',
+    cardType: 'summary_large_image',
+  }
+}); %>
+
+<%- include('../../components/navbar'); %>
+
+<!-- Content -->
+<div class="diff-container">
+  <section>
+    <div class="diff-content">
+      <header>
+        <h1 class="sr-only">Trabajos</h1>
+      </header>
+      <article class="diff-work-article">
+        <a href="{#baseUrl}/trabajos/">
+          <img class="diff-image" src="{#baseUrl}/images/" />
+        </a>
+        <a class="diff-text-inline" href="">
+          <h2 class="diff-text-title-inline-header">Último trabajo</h2>
+        </a>
+      </article>
+      <article class="diff-work-article">
+        <a href="{#baseUrl}/blog/american-typewriter">
+          <img class="diff-image" src="{#baseUrl}/images/" />
+        </a>
+        <a class="diff-text-inline" href="">
+          <p class="diff-text-title-inline-article">American Typewriter</p>
+        </a>
+      </article>
+      <article class="diff-work-article">
+        <a href="{#baseUrl}/blog/american-typewriter">
+          <img class="diff-image" src="{#baseUrl}/images/" />
+        </a>
+        <a class="diff-text-inline" href="">
+          <p class="diff-text-title-inline-article">American Typewriter</p>
+        </a>
+      </article>
+    </div>
+  </section>
+</div>
+<%- include('../../components/footer'); %>
+<%- include('../../components/menu'); %>

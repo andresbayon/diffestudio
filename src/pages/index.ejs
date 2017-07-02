@@ -1,0 +1,56 @@
+<%- include('../components/head', {
+  siteName: 'Diff Estudio',
+  title: 'DIFF Estudio Creativo',
+  description: 'DIFF Estudio ofrece trabajos de dirección creativa, branding, diseño gráfico y diseño web. Trabajamos desde la ciudad de Valladolid para todo el mundo.',
+  slug: '/',
+  image: [{
+    location: '{#baseUrl}/images/landing.jpg',
+    title: 'Diff Estudio'
+  }],
+  locale: 'es',
+  og: {
+    type: 'website'
+  },
+  twitter: {
+    siteAccount: '@diffestudio',
+    author: '@jaimerodman',
+    cardType: 'summary_large_image',
+  }
+}); %>
+
+<!-- Landing -->
+<div class="diff-landing">
+  <div class="diff-landing-title">Dirección creativa</div>
+</div>
+<%- include('../components/navbar'); %>
+<!-- Content -->
+<div class="diff-container">
+  <section>
+    <div class="diff-content">
+      <header>
+      <h1 class="sr-only">DIFF Estudio Creativo</h1>
+        <p class="diff-text-lead">DIFF Estudio ofrece trabajos de dirección creativa, branding, diseño gráfico y diseño web. Trabajamos desde la ciudad de Valladolid para todo el mundo, buscando siempre la diferencia a través de los detalles.</p>
+      </header>
+      <article class="diff-article">
+        <a href="{#baseUrl}/trabajos/">
+          <img class="diff-image" src="{#baseUrl}/images/" />
+        </a>
+        <a class="diff-text-inline" href="">
+          <h2 class="diff-text-title-inline-header">Último trabajo</h2>
+          <p class="diff-text-title-inline-article">40 años de CCOO Castilla y León</p>
+        </a>
+      </article>
+      <article class="diff-article">
+        <a href="{#baseUrl}/blog/american-typewriter">
+          <img class="diff-image" src="{#baseUrl}/images/" />
+        </a>
+        <a class="diff-text-inline" href="">
+          <h2 class="diff-text-title-inline-header">Blog</h2>
+          <p class="diff-text-title-inline-article">American Typewriter</p>
+        </a>
+      </article>
+    </div>
+  </section>
+</div>
+<%- include('../components/footer'); %>
+<%- include('../components/menu'); %>

@@ -1,5 +1,8 @@
-@import normalize.scss
+@import normalize
 @import _flex
+
+html
+  font-size: 16px
 
 a
   text-decoration: none
@@ -28,55 +31,81 @@ a
     @media only screen and (min-width: 1920px)  { @content }
 
 .diff
-  &-layout
-    &-container
-      width: 100%
-      margin: 0 auto
-      @include breakpoint(largest)
-        width: 1920px
-    &-nav
-      @include flexbox()
-      @include flex-direction(row)
-      position: fixed
-      top: 0
-      left: 0
-      width: 100%
-      background: #fff
-  &-nav
-    &-brand
-      @include flex()
-      padding: 16px
-    &-buttons
-      @include flex()
-      text-align: right
-      padding: 16px
-  &-menu
-    @include flexbox()
-    @include flex-direction(column)
-    position: fixed
-    top: 0
-    left: 0
+  &-landing
     width: 100%
     height: 100vh
     background: #000
     color: #fff
-    text-align: center
+  &-container
+    width: 100%
+    margin: 0 auto
+    @include breakpoint(largest)
+      width: 1920px
+  &-nav
+    @include flexbox()
+    @include flex-direction(row)
+    top: -100px
+    left: 0
+    width: 100%
+    background: #fff
+    transition: .2s ease-in-out all
+    &-show
+      top: 0
+      position: fixed
+    @include breakpoint(largest)
+      width: 1920px
+    &-brand
+      @include flex(0 0)
+      @include flexbox()
+      @include flex-direction(row)
+      padding: 16px
+      &-column
+        @include flex()
+        @include flexbox()
+        @include flex-direction(column)
+        &-title
+          font-size: 32px
+          padding-right: 16px
+        &-row
+          @include flex()
+    &-buttons
+      @include flex(1 0)
+      @include flexbox()
+      @include flex-direction(column)
+      @include justify-content(center)
+      @include align-items(flex-end)
+      padding: 16px
+  &-menu
+    position: fixed
+    height: 100vh
+    overflow-y: auto
+    background: #000
+    color: #fff
+    top: 0
+    left: 0
+    width: 100%
     visibility: hidden
     opacity: 0
     transition: .2s ease-in-out all
     &-show
       opacity: 1
       visibility: visible
+    &-inner
+      @include flexbox()
+      @include flex-direction(column)
+      min-height: 100vh
+      text-align: center
     &-close
-      @include flex(1)
+      @include flex(1 0)
       @include flexbox()
       @include flex-direction(column)
       @include justify-content(center)
       @include align-items(center)
+      padding: 16px
       &-button
-        @include flex(0 0 1px)
+        @include flex(0 0 50px)
     &-nav
-      @include flex(3)
+      @include flex(1 0)
       @include flexbox()
       @include flex-direction(column)
       @include justify-content(center)
@@ -92,11 +121,12 @@ a
             font-size: 36px
             text-decoration: none
     &-social
-      @include flex(1)
+      @include flex(1 0)
       @include flexbox()
       @include flex-direction(column)
       @include justify-content(center)
       @include align-items(center)
+      padding: 16px
       &-list
         margin: 0
         padding: 0
@@ -143,3 +173,22 @@ a
     &-top
       background: #000
       color: #fff
+  &-article
+    margin-bottom: 40px
+  &-text
+    &-lead
+      font-size: 24px
+    &-title
+      &-inline
+        &-header
+          text-transform: uppercase
+          margin: 0 10px 0 0
+          display: inline
+          font-size: 16px
+        &-article
+          margin: 0
+          display: inline
+          font-size: 16px
+  &-image
+    width: 100%
+    height: auto

@@ -5,6 +5,8 @@
   var openMenuButton = document.querySelector('[data-menu-open]');
   var closeMenuButton = document.querySelector('[data-menu-close]');
   var scrollButton = document.querySelector('[data-scroll-button]');
+  var navbar = document.querySelector('[data-navbar]');
+  var lastScrollY = 0;
 
   var toggleMenuVisibility = function toggleMenuVisibility(e) {
     e.stopPropagation();
@@ -17,6 +19,17 @@
     scrollButton.innerText = window.pageYOffset === 0 ? 'Scroll' : 'Top';
   };
 
+  var windowScroll = function windowScroll(e) {
+    var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollY > window.innerHeight && scrollY < lastScrollY) {
+      navbar.classList.add('diff-nav-show');
+    } else {
+      navbar.classList.remove('diff-nav-show');
+    }
+    lastScrollY = scrollY;
+    checkScrollButton(e);
+  };
+
   var doScroll = function doScroll(e) {
     window.scrollTo(0, scrollButton.dataset.direction === 'down' ? window.innerHeight : 0);
   };
@@ -25,6 +38,6 @@
   closeMenuButton.addEventListener('click', toggleMenuVisibility);
 
   window.addEventListener('load', checkScrollButton);
-  window.addEventListener('scroll', checkScrollButton);
+  window.addEventListener('scroll', windowScroll);
   scrollButton.addEventListener('click', doScroll);
 })();
