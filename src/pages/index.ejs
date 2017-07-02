@@ -20,6 +20,13 @@
 
 <!-- Landing -->
 <div class="diff-landing">
+  <%- include('../components/image', {
+    title: 'Gato',
+    type: 'full-viewport',
+    path: '{#baseUrl}/images',
+    name: 'cat',
+    extension: 'jpg'
+  }); %>
   <div class="diff-landing-title">Dirección creativa</div>
 </div>
 <%- include('../components/navbar'); %>

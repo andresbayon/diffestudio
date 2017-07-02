@@ -12,7 +12,7 @@
     "parse-html": "node ./scripts/parse-html.js",
     "watch-sass": "node-sass -w -r --source-map true src/sass/main.sass build/css/styles.css && browser-sync reload",
     "watch-js": "nodemon --watch src/js -e js -x \"npm run compile-js && npm run replace && browser-sync reload\"",
-    "watch-img": "nodemon --watch src/images -e png gif svg jpg jpeg -x \"npm run parse-img && browser-sync reload\"",
+    "watch-img": "nodemon --watch src/images -e png,gif,svg,jpg,jpeg -x \"npm run parse-img && browser-sync reload\"",
     "watch-html": "nodemon --watch src/pages --watch src/components -e ejs,txt,php,xml,pdf -x \"npm run parse-html && npm run replace && browser-sync reload\"",
     "browser-sync": "browser-sync start -s 'build' -f 'build'",
     "watch": "npm run browser-sync & npm run watch-js & npm run watch-sass & npm run watch-img & npm run watch-html",
@@ -25,6 +25,7 @@
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.18.12",
     "ejs": "^2.5.6",
+    "gm": "^1.23.0",
     "htmlmin": "0.0.7",
     "imagemin-cli": "^3.0.0",
     "imagemin-gifsicle": "^5.1.0",
@@ -45,6 +46,80 @@
     "url": {
       "dev": "http://localhost:3000",
       "pro": "https://www.diffestudio.com"
-    }
+    },
+    "images": [{
+      "postfix": "_768",
+      "width": 768
+    }, {
+      "postfix": "_1148",
+      "width": 1148
+    }, {
+      "postfix": "_1280",
+      "width": 1280
+    }, {
+      "postfix": "_1920",
+      "width": 1920
+    }],
+    "breakpoints": [{
+      "type": "full-viewport",
+      "versions": [{
+        "query": "(max-width: 1920px)",
+        "postfix": "_1920"
+      }, {
+        "query": "(max-width: 1280px)",
+        "postfix": "_1280"
+      }, {
+        "query": "(max-width: 768px)",
+        "postfix": "_768"
+      }]
+    }, {
+      "type": "half-viewport",
+      "versions": [{
+        "query": "(max-width: 1920px)",
+        "postfix": "_960"
+      }, {
+        "query": "(max-width: 1280px)",
+        "postfix": "_640"
+      }, {
+        "query": "(max-width: 768px)",
+        "postfix": "_384"
+      }]
+    }, {
+      "type": "full-content",
+      "versions": [{
+        "query": "(max-width: 1920px)",
+        "postfix": "_1920"
+      }, {
+        "query": "(max-width: 1280px)",
+        "postfix": "_1148"
+      }, {
+        "query": "(max-width: 800px)",
+        "postfix": "_768"
+      }]
+    }, {
+      "type": "half-content",
+      "versions": [{
+        "query": "(max-width: 800px)",
+        "postfix": "_384"
+      }, {
+        "query": "(max-width: 1280px)",
+        "postfix": "_1148"
+      }, {
+        "query": "(max-width: 1920px)",
+        "postfix": "_1920"
+      }]
+    }, {
+      "type": "third-content",
+      "versions": [{
+        "query": "(max-width: 800px)",
+        "postfix": "_384"
+      }, {
+        "query": "(max-width: 1280px)",
+        "postfix": "_1148"
+      }, {
+        "query": "(max-width: 1920px)",
+        "postfix": "_1920"
+      }]
+    }]
   }
 }

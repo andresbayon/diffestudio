@@ -4,6 +4,7 @@ const getDirName = require('path').dirname;
 const walk = require('walk');
 const ejs = require('ejs');
 const htmlmin = require('htmlmin');
+const imgBP = require('../package.json').config.breakpoints;
 
 const walker = walk.walk('src/pages');
 
@@ -30,7 +31,12 @@ const parseFile = (path, stats, string, next) => {
   const relPath = /^src\/pages\/*(.*?)$/.exec(path)[1];
   const dest = 'build' + ((relPath !== '') ? '/' : '') + relPath + ((isEJS) ? '/index.html' : '/' + stats.name);
   if (isEJS) {
-    ejs.renderFile(root, {}, (err, result) => {
+    ejs.renderFile(root, {
+      images: imgBP
+    }, (err, result) => {
+      if (err) {
+        console.error('Error en EJS:', root, err);
+      }
       writeFile(dest, htmlmin(result, {
         collapseWhitespace: true
       }), next);
@@ -54,32 +60,3 @@ walker.on('file', (path, stats, next) => {
  walker.on('end', () => {
    console.log('> Directorio de páginas recorrido con éxito.');
  });
-
-/*
-return gulp.src([path.join(mdPath, '** /*.md')])
-   .pipe(plugins.changed(dest))
-   .pipe(plugins.plumber())
-   .pipe(through.obj(function (file, enc, cb) {
-     let page = metamd(file.contents.toString(enc))
-     file.contents = new Buffer(jade.renderFile(path.join(tplPath, page.meta.template), {
-       jade: jade,
-       pretty: true,
-       config: config,
-       debug: false,
-       site: siteData,
-       page: page
-     }), enc)
-     let slug = page.meta.slug || ''
-     file.path = path.join(file.base, slug, 'index.html')
-     cb(null, file)
-   }))
-   .pipe(plugins.htmlmin({
-     collapseBooleanAttributes: true,
-     conservativeCollapse: true,
-     removeCommentsFromCDATA: true,
-     removeEmptyAttributes: true,
-     removeRedundantAttributes: true
-   }))
-   .pipe(gulp.dest(dest))
-   .on('end', browserSync.reload)
-*/

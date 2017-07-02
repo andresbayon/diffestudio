@@ -1,0 +1,17 @@
+<%
+const imageType = images.find(image => image.type === type)
+const imageParams = (imageType) ? imageType.versions : null
+%>
+<picture>
+  <% for (let len = imageParams.length; len--;) { %>
+    <% if (len !== 0) { %>
+      <source
+        media="<%= imageParams[len].query %>"
+        srcset="<%= path %>/<%= name + imageParams[len].postfix %>.<%= extension %>">
+    <% } else { %>
+      <img
+        src="<%= path %>/<%= name %>.<%= extension %>"
+        alt="<%= title %>">
+    <% } %>
+  <% } %>
+</picture>
